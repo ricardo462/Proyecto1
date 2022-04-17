@@ -6,7 +6,7 @@ class Controlador:
         self.planta = planta
         self.reglas = reglas 
         self.PO = PO
-        self.previous_TP = 0
+        self.previous_EP = 0
         self.method = method
 
     def control_plant(self):
@@ -23,7 +23,10 @@ class Controlador:
         return self.planta.get_P() - self.PO
 
     def TP(self, EP):
-        return EP - self.previous_TP
+        TP = EP - self.previous_EP
+        self.previous_EP = EP
+        return TP
+
 
     
     def FIS(self, E1, E2, rules, method="COG", samples=41, ran=[-1.0,1.0]):
